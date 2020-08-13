@@ -1,0 +1,61 @@
+.container {
+    background-color: rgb(62, 139, 210);
+    height: 40vh;
+}
+
+.bodyy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 80vh;
+}
+
+.qr {
+    width: 75%;
+}
+
+.scanarea {
+    display: flex;
+}
+
+.information {
+    width: 100%;
+    text-align: center;
+    padding: 0 40px;
+    margin: auto 0;
+    margin-bottom: 5px;
+}
+
+.qrcode {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(62, 139, 210, 0.2);
+    border-radius: 4px;
+}
+
+.shade1 {
+    background: rgba(62, 139, 210, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.shade2 {
+    background: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.data {
+    width: 100%;
+}

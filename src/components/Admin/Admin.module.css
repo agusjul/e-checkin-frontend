@@ -1,0 +1,44 @@
+.container {
+    background-color: rgb(62, 139, 210);
+    height: 25vh;
+}
+
+.bodyy {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    position: absolute;
+    height: 80vh;
+    width: 100%;
+}
+
+.qr {
+    width: 75%;
+    height: 300px;
+}
+
+.scanarea {
+    display: flex;
+}
+
+.information {
+    width: 75%;
+    text-align: left;
+    padding: 0 40px;
+    margin: auto 0;
+}
+
+.qrcode {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(62, 139, 210, 0.2);
+    border-radius: 4px;
+}
+
+.data {
+    width: 75%;
+}

@@ -1,0 +1,15 @@
+.header {
+    background : rgb(62, 139, 210);
+}
+
+.signin {
+    border-color: white;
+    background: #3e8bd2;
+    color: white;
+}
+
+@media only screen and (max-width: 320px) {
+    .header {
+        width: 100%;
+    }
+}
