@@ -60,7 +60,7 @@ class Formcomponent extends React.Component {
             socket.emit("add-new-visitor")
             localStorage.setItem("id", visitor.data._id);
             db.ref('pengunjung').update({onSubmit : true});
-            // db.ref('pengunjung').update({newData : false});
+            // db.ref('pengunjung').update({newCheckin : false});
             
             
             this.toWelcome();

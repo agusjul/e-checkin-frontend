@@ -9,11 +9,13 @@ import lagu from "../../lagu/new/submitSuccess.mp3";
 import img1 from '../../image/a.jpg';
 import img2 from '../../image/b.jpg';
 import img3 from '../../image/c.jpg';
+import { BsExclamationTriangle } from "react-icons/bs";
 class Homepage extends React.Component{
 
     state ={
         statistik : {},
         pengunjung: {},
+        newCheckin : true
     }
 
     socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
@@ -70,55 +72,33 @@ class Homepage extends React.Component{
             }
         })
 
+        db.ref('pengunjung/newCheckin').on('value',snapshot =>{
+            const data = snapshot.val()
+            this.setState({
+                newCheckin : data
+            })
+        })
+
     }
 
     
 
     render(){
-        return(
-            // <Carousel>
-            //     <Carousel.Item>
-            //     <img
-            //         className="d-block w-100"
-            //         src={img1}
-            //         alt="First slide"
-            //     />
-            //     <Carousel.Caption>
-            //         <h3>First slide label</h3>
-            //         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            //     </Carousel.Caption>
-            //     </Carousel.Item>
-            //     <Carousel.Item>
-            //     <img
-            //         className="d-block w-100"
-            //         src={img2}
-            //         alt="Third slide"
-            //     />
+        const pengunjungbaru = (
+            <Card className={styles.qr}>
+                <Card.Body className={styles.information}>
+                <div style={{padding : "50px"}}>
+                    <BsExclamationTriangle style={{fontSize : "108px", marginBottom : "20px"}}/>
+                    <h1>Silahkan Berdiri di Tempat yang telah disediakan</h1>
+                </div>
+                </Card.Body>
+                
+                
+            </Card>
+        )
 
-            //     <Carousel.Caption>
-            //         <h3>Second slide label</h3>
-            //         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            //     </Carousel.Caption>
-            //     </Carousel.Item>
-            //     <Carousel.Item>
-            //     <img
-            //         className="d-block w-100"
-            //         src={img3}
-            //         alt="Third slide"
-            //     />
-
-            //     <Carousel.Caption>
-            //         <h3>Third slide label</h3>
-            //         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            //     </Carousel.Caption>
-            //     </Carousel.Item>
-            //     </Carousel>
-
-
-
-            <div className={styles.container}>
-                <div className={styles.bodyy}>
-                    <Card className={styles.qr}>
+        const tidakpengunjung = (
+            <Card className={styles.qr}>
                         <Card.Body>
                             <div className={styles.scanarea}>
                                 <div className={styles.information}>
@@ -168,7 +148,56 @@ class Homepage extends React.Component{
                             </div>
                         </Card.Body>
                     </Card>
-                    </div>
+        )
+
+        return(
+            // <Carousel>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img1}
+            //         alt="First slide"
+            //     />
+            //     <Carousel.Caption>
+            //         <h3>First slide label</h3>
+            //         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img2}
+            //         alt="Third slide"
+            //     />
+
+            //     <Carousel.Caption>
+            //         <h3>Second slide label</h3>
+            //         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img3}
+            //         alt="Third slide"
+            //     />
+
+            //     <Carousel.Caption>
+            //         <h3>Third slide label</h3>
+            //         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     </Carousel>
+
+
+
+            <div className={styles.container}>
+                <div className={styles.bodyy}>
+                    {
+                        this.state.newCheckin ? pengunjungbaru : tidakpengunjung
+                    }
+                    
+                </div>
             </div>
         )
     }
