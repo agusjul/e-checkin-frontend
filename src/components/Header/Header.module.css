@@ -1,5 +1,8 @@
 .header {
     background : rgb(62, 139, 210);
+    position: absolute;
+    z-index: 100;
+    width: 100%;
 }
 
 .signin {

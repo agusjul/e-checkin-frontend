@@ -1,6 +1,8 @@
 .container {
     background-color: rgb(62, 139, 210);
-    height: 40vh;
+    height: 50vh;
+    padding-top: 50px;
+
 }
 
 .bodyy {

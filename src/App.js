@@ -10,6 +10,7 @@ import Mobile from './components/Mobile/Mobile';
 import Logout from './components/Logout/Logout';
 import Welcome from './components/Welcomepage/Welcome';
 import ScanQR from './components/ScanQR/ScanQR';
+import Notelepon from './components/Notlp/Notlp';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +18,17 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component{
+  state ={
+    no : ""
+  }
+
+  addNumber = (e) => {
+    this.setState({
+      no : e
+    })
+    
+  }
+
   render(){
     return(
       <Router>
@@ -26,12 +38,16 @@ class App extends React.Component{
             <Admin/>
           </Route>
           <Route path="/logout">
-            <Back/>
+            <Mobile/>
             <Logout/>
           </Route>
           <Route path="/user">
             <Mobile/>
-            <Form/>
+            <Form tlp={this.state.no}/>
+          </Route>
+          <Route path="/notlp">
+            <Notelepon tlp={this.state.no} number={this.addNumber}/>
+           
           </Route>
           <Route path="/welcome">
             <Mobile/>

@@ -29,3 +29,12 @@
         width: 100%;
     }
 }
+
+.disclaim {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text {
+    font-size: 12px;
+}

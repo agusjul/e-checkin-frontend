@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from './Homepage.module.css';
-import {Card} from 'react-bootstrap';
+import {Card, Carousel} from 'react-bootstrap';
 import io from 'socket.io-client';
 import axios from 'axios';
 import { db } from '../../config/firebase';
 import { withRouter } from 'react-router-dom';
-import lagu from "../../lagu/selamatdatang.mp3";
+import lagu from "../../lagu/new/submitSuccess.mp3";
+import img1 from '../../image/a.jpg';
+import img2 from '../../image/b.jpg';
+import img3 from '../../image/c.jpg';
 class Homepage extends React.Component{
 
     state ={
@@ -28,9 +31,20 @@ class Homepage extends React.Component{
         
       }
 
+    didalam(){
+        const a = this.state.statistik.checkedInCount
+        const b = this.state.statistik.checkedOutCount
+        const dalam = a + b;
+        if (dalam < 0){
+            return 0
+        } else {
+            return a+b
+        }
+    }
+
     async componentDidMount(){
-        const audioEl = document.getElementsByClassName("audio-element")[0]
-        audioEl.play()   
+        // const audioEl = document.getElementsByClassName("audio-element")[0]
+        // audioEl.play()   
         const stat = await axios({
             method : "get",
             url : "https://e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
@@ -62,52 +76,89 @@ class Homepage extends React.Component{
 
     render(){
         return(
+            // <Carousel>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img1}
+            //         alt="First slide"
+            //     />
+            //     <Carousel.Caption>
+            //         <h3>First slide label</h3>
+            //         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img2}
+            //         alt="Third slide"
+            //     />
+
+            //     <Carousel.Caption>
+            //         <h3>Second slide label</h3>
+            //         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     <Carousel.Item>
+            //     <img
+            //         className="d-block w-100"
+            //         src={img3}
+            //         alt="Third slide"
+            //     />
+
+            //     <Carousel.Caption>
+            //         <h3>Third slide label</h3>
+            //         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            //     </Carousel.Caption>
+            //     </Carousel.Item>
+            //     </Carousel>
+
+
+
             <div className={styles.container}>
                 <div className={styles.bodyy}>
                     <Card className={styles.qr}>
                         <Card.Body>
                             <div className={styles.scanarea}>
                                 <div className={styles.information}>
-                                    <h1>Selamat Datang di  STMIK Primakara</h1>
-                                    <p style={{fontSize : "24px", marginTop : "20px"}}>Scan barcode untuk melanjutkan, anda akan diminta mengisi data diri untuk bisa masuk ke STMIK Primakara</p>
+                                    <h1>Selamat Datang di  LLDIKTI VIII <br/> (Lembaga Layanan Pendidikan Tinggi VIII)</h1>
+                                    <p style={{fontSize : "24px", marginTop : "20px"}}>Silahkan berdiri di tempat yang telah ditentukan, kemudian lakukan scan suhu tubuh dengan mendekatkan dahi ke Sensor</p>
                                     <audio className="audio-element">
                                      <source src={lagu}></source>
                                     </audio>
                                 </div>
-                                {/* <div className={styles.qrcode}>
-                                    <div className={styles.shade1}>
-                                        <div className={styles.shade2}>
-                                            <img src={img1} style={{width : "100%"}} alt=""/>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                             <div>
-                            <hr/>
+                            
                                 <div className = {styles.data}>
                                         
-                                        <h2 style={{color : "161616", justifyContent : "center", display : "flex", marginTop :"20px"}}>Statistik</h2>
+                                        <h2 style={{color : "161616", justifyContent : "center", display : "flex", marginTop :"20px"}}></h2>
                                         <div class="row row-cols-1 row-cols-md-3 g-4">
                                             <div class="col mb-2">
                                                 <div class="card h-100"  >
                                                 <div class="card-body">
-                                                    <p class="card-title">Orang datang</p>
-                                                <h2 class="card-text">{this.state.statistik.checkedInCount}</h2>
+                                                    <p class="card-title">Orang Masuk</p>
+                                                <h2 class="card-text">{this.didalam()}</h2>
                                                 </div>
                                                 </div>
                                             </div>
                                             <div class="col mb-2">
                                                 <div class="card h-100" >
                                                 <div class="card-body">
-                                                    <p class="card-title">Orang di lokasi</p>
-                                                    <h2 class="card-text">{(this.state.statistik.checkedInCount)-(this.state.statistik.checkedOutCount)}</h2>
+                                                    <p class="card-title">Orang di Dalam</p>
+                                                    <h2 class="card-text">{
+                                                        this.state.statistik.checkedInCount
+                                                        
+                                                        }
+                                                    </h2>
                                                 </div>
                                                 </div>
                                             </div>
                                             <div class="col mb-2">
                                                 <div class="card h-100" >
                                                 <div class="card-body">
-                                                    <p class="card-title">Orang keluar</p>
+                                                    <p class="card-title">Orang Keluar</p>
                                                 <h2 class="card-text">{this.state.statistik.checkedOutCount}</h2>
                                                 </div>
                                                 </div>

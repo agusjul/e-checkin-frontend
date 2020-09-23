@@ -1,0 +1,31 @@
+.container {
+    width: 100%;
+    margin: 0 auto;
+    height: 50vh;
+    background : rgb(62, 139, 210);
+}
+
+.bodyy {
+    width: 100%;
+    background: white;
+    height: 100%;
+    border-radius: 25px 25px 0 0;
+    padding : 25px 20px;
+}
+
+.tombol {
+    width: 45%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.gruptombol {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 320px) {
+    .container {
+        width: 100%;
+    }
+}

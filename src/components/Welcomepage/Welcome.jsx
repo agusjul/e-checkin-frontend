@@ -13,19 +13,19 @@ class Welcomepage extends React.Component{
     render(){
         return(
             <div className={styles.container}>
-                 <audio className="audio-elem">
-                        <source src={lagu1}></source>
-                </audio>
                 <div className={styles.bodyy}>
                     <div>
                         <Card>
                             <Card.Body>
                                 <div>
                                     <div>
-                                        <h4>Selamat Datang di <br/> STMIK Primakara</h4>
+                                        <h4>Silahkan masuk ke <br/> LLDIKTI VIII (Lembaga Layanan Pendidikan Tinggi VIII)</h4>
                                         <p style={{fontSize : "18px", marginTop : "20px"}}>Data berhasil dikirim, sekarang anda dapat memasuki area</p>
                                     </div>
                                 </div>
+                                <audio className="audio-elem">
+                                        <source src={lagu1}></source>
+                                </audio>
                             </Card.Body>
                         </Card>
                     </div>

@@ -27,7 +27,7 @@ class Logoutcomponent extends React.Component {
                     <Card.Header>Logout</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                        Terimakasih telah mengunjungi STMIK Primakara
+                        Terimakasih telah mengunjungi LLDIKTI VIII (Lembaga Layanan Pendidikan Tinggi VIII)
                         </Card.Text>
                         <Button onClick={() => this.handleLogout()} variant="primary">Keluar</Button>
                     </Card.Body>
