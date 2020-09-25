@@ -10,6 +10,10 @@ import img1 from '../../image/a.jpg';
 import img2 from '../../image/b.jpg';
 import img3 from '../../image/c.jpg';
 import { BsExclamationTriangle } from "react-icons/bs";
+
+const suarasd = require('../../lagu/new/selamatdatangpudak.mp3');
+
+
 class Homepage extends React.Component{
 
     state ={
@@ -73,6 +77,10 @@ class Homepage extends React.Component{
         })
 
         db.ref('pengunjung/newCheckin').on('value',snapshot =>{
+
+            const normal = document.getElementsByClassName("audio-element-selamatDatang")[0]
+            normal.play()
+
             const data = snapshot.val()
             this.setState({
                 newCheckin : data
@@ -90,6 +98,9 @@ class Homepage extends React.Component{
                 <div style={{padding : "50px"}}>
                     <BsExclamationTriangle style={{fontSize : "108px", marginBottom : "20px"}}/>
                     <h1>Silahkan Berdiri di Tempat yang telah disediakan</h1>
+                    <audio className="audio-element-selamatDatang">
+                        <source src={suarasd} type="audio/mpeg"></source>
+                    </audio>
                 </div>
                 </Card.Body>
                 
