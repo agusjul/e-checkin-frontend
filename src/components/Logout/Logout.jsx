@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 class Logoutcomponent extends React.Component {
 
     handleLogout = async() =>{
-        const socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
+        const socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
         const id = localStorage.getItem("id")
-        await axios.get(`https://e-checkin-server-283807.et.r.appspot.com/api/visitors/${id}/out`)
+        await axios.get(`https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/${id}/out`)
         socket.emit("add-new-visitor")
         localStorage.clear();
         this.toUser();
@@ -27,7 +27,7 @@ class Logoutcomponent extends React.Component {
                     <Card.Header>Logout</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                        Terimakasih telah mengunjungi LLDIKTI VIII (Lembaga Layanan Pendidikan Tinggi VIII)
+                        Terimakasih telah mengunjungi STMIK Primakara
                         </Card.Text>
                         <Button onClick={() => this.handleLogout()} variant="primary">Keluar</Button>
                     </Card.Body>

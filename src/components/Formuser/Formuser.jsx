@@ -39,9 +39,9 @@ class Formcomponent extends React.Component {
         e.preventDefault();
         console.log(this.state)
         // if(this.state.no.length === 8){
-            const socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
+            const socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
             console.log(socket);
-            const visitor = await axios.post("https://e-checkin-server-283807.et.r.appspot.com/api/visitors",
+            const visitor = await axios.post("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors",
                 {
                     name : this.state.nama,
                     telp : this.state.no, 

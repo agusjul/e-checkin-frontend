@@ -6,9 +6,7 @@ import axios from 'axios';
 import { db } from '../../config/firebase';
 import { withRouter } from 'react-router-dom';
 import lagu from "../../lagu/new/submitSuccess.mp3";
-import img1 from '../../image/a.jpg';
-import img2 from '../../image/b.jpg';
-import img3 from '../../image/c.jpg';
+import img1 from '../../image/logo-01.png';
 import { BsExclamationTriangle } from "react-icons/bs";
 
 const suarasd = require('../../lagu/new/selamatdatangpudak.mp3');
@@ -16,13 +14,18 @@ const suarasd = require('../../lagu/new/selamatdatangpudak.mp3');
 
 class Homepage extends React.Component{
 
+    constructor(props) {
+    super(props)
+    this.myRef = React.createRef();
+  }  
+
     state ={
         statistik : {},
         pengunjung: {},
-        newCheckin : true
+        newCheckin : false
     }
 
-    socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
+    socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
 
     componentDidUpdate(){
         const app = this
@@ -50,10 +53,10 @@ class Homepage extends React.Component{
 
     async componentDidMount(){
         // const audioEl = document.getElementsByClassName("audio-element")[0]
-        // audioEl.play()   
+        // audioEl.play()  
         const stat = await axios({
             method : "get",
-            url : "https://e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
+            url : "https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
             // headers : {
             //   Authorization : `Bearer ${JSON.parse(localStorage.getItem("token")).token}`
             // }
@@ -76,12 +79,13 @@ class Homepage extends React.Component{
             }
         })
 
-        db.ref('pengunjung/newCheckin').on('value',snapshot =>{
+        db.ref('pengunjung/newCheckin').on('value', snapshot =>{
 
-            const normal = document.getElementsByClassName("audio-element-selamatDatang")[0]
-            normal.play()
-
+            
             const data = snapshot.val()
+            if(data){
+                this.myRef.play(); 
+            }
             this.setState({
                 newCheckin : data
             })
@@ -97,10 +101,7 @@ class Homepage extends React.Component{
                 <Card.Body className={styles.information}>
                 <div style={{padding : "50px"}}>
                     <BsExclamationTriangle style={{fontSize : "108px", marginBottom : "20px"}}/>
-                    <h1>Silahkan Berdiri di Tempat yang telah disediakan</h1>
-                    <audio className="audio-element-selamatDatang">
-                        <source src={suarasd} type="audio/mpeg"></source>
-                    </audio>
+                    <h1>Silahkan berdiri di tempat yang sudah ditandai</h1>
                 </div>
                 </Card.Body>
                 
@@ -110,14 +111,21 @@ class Homepage extends React.Component{
 
         const tidakpengunjung = (
             <Card className={styles.qr}>
+                <Card.Header className="text-center p-0"> 
+                    <img src={img1} alt="logoprimakara&pemkot" style={{height : "100px"}}/> 
+                </Card.Header>
                         <Card.Body>
                             <div className={styles.scanarea}>
                                 <div className={styles.information}>
-                                    <h1>Selamat Datang di  LLDIKTI VIII <br/> (Lembaga Layanan Pendidikan Tinggi VIII)</h1>
-                                    <p style={{fontSize : "24px", marginTop : "20px"}}>Silahkan berdiri di tempat yang telah ditentukan, kemudian lakukan scan suhu tubuh dengan mendekatkan dahi ke Sensor</p>
-                                    <audio className="audio-element">
-                                     <source src={lagu}></source>
-                                    </audio>
+                                    <h2>Selamat Datang di Denpasar Festival <br/>Tahun 2020</h2>
+                                        <p style={{fontSize : "18px", marginTop : "20px"}}>
+                                            Automatic Inspection Gate Merupakan alat pendeteksi Suhu dan Masker Otomatis 
+                                            yang mampu mencatat jumlah pengujung yang telah masuk, sedang didalam, 
+                                            hingga yang telah keluar dari Denpasar Festival
+                                        </p>
+                                        <audio className="audio-element">
+                                            <source src={lagu}></source>
+                                        </audio>    
                                 </div>
                             </div>
                             <div>
@@ -158,6 +166,9 @@ class Homepage extends React.Component{
                                 </div>
                             </div>
                         </Card.Body>
+                        <Card.Footer className="text-right">
+                          <small className="text-muted">developed by : STMIK Primakara</small>
+                        </Card.Footer>
                     </Card>
         )
 
@@ -203,13 +214,18 @@ class Homepage extends React.Component{
 
 
             <div className={styles.container}>
-                <div className={styles.bodyy}>
+                    <audio className="audio-element-selamatDatang" ref={(input) => {this.myRef = input}}>
+                        <source src={suarasd} type="audio/mpeg"></source>
+                    </audio>
+                    <div className={styles.bodyy}>
                     {
-                        this.state.newCheckin ? pengunjungbaru : tidakpengunjung
+                        !this.state.newCheckin ? tidakpengunjung : pengunjungbaru
                     }
                     
                 </div>
             </div>
+
+            
         )
     }
 }

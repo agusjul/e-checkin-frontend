@@ -28,9 +28,9 @@ class Notelepon extends React.Component {
     handleSubmit = async e => {
         e.preventDefault();
         // if(this.state.no.length === 8){
-            const socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
+            const socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
             console.log(socket);
-            const visitor = await axios.post("https://e-checkin-server-283807.et.r.appspot.com/api/visitors/verify-telp",
+            const visitor = await axios.post("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/verify-telp",
             {   telp : this.state.no,
                 bodyTemp : this.state.temperature
             })

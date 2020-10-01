@@ -15,6 +15,13 @@ const suara2 = require('../../lagu/new/suhuTuhuhDiatasNormal.mp3');
 const suara3 = require('../../lagu/new/submitSuccess.mp3');
 class ScanQR extends React.Component{
 
+    constructor (props){
+        super(props);
+        this.suhuNormal = React.createRef();
+        this.tidakNormal = React.createRef();
+        this.selamat = React.createRef();
+    }
+
     state ={
         pengunjung : {}
     }
@@ -40,8 +47,9 @@ class ScanQR extends React.Component{
             if(snapshot.val()){
                 db.ref('pengunjung').update({onSubmit : false});
 
-                const thanks = document.getElementsByClassName("audio-thanks")[0]
-                    thanks.play() 
+                // const thanks = document.getElementsByClassName("audio-thanks")[0]
+                //     thanks.play() 
+                this.selamat.play()
 
                     setTimeout(
                         function() {
@@ -60,8 +68,9 @@ class ScanQR extends React.Component{
             this.setState({ pengunjung: data })          
                 if(data.temperature >= 37.3){
 
-                    const diatasNormal = document.getElementsByClassName("audio-element-diatasNormal")[0]
-                    diatasNormal.play() 
+                    // const diatasNormal = document.getElementsByClassName("audio-element-diatasNormal")[0]
+                    // diatasNormal.play() 
+                    this.tidakNormal.play();
 
                     setTimeout(
                         function() {
@@ -83,9 +92,16 @@ class ScanQR extends React.Component{
                     
              
                 }else{
-                        window.init();
-                        const normal = document.getElementsByClassName("audio-element-normal")[0]
-                        normal.play() 
+                        // const normal = document.getElementsByClassName("audio-element-normal")[0]
+                        // normal.play() 
+                        this.suhuNormal.play();
+                        setTimeout(
+                            function(){
+                                window.init();; 
+                                }, 
+                            1500
+                        );
+                        
                     }
                 
             
@@ -134,15 +150,15 @@ class ScanQR extends React.Component{
                 <div className={styles.bodyy}>
                     <Card className={styles.qr}>
                         <Card.Body>
-                                <audio className="audio-element-normal">
+                                <audio className="audio-element-normal" ref={(input) => {this.suhuNormal = input}}>
                                      <source src={suara} type="audio/mpeg"></source>
                                 </audio>
 
-                                <audio className="audio-element-diatasNormal">
+                                <audio className="audio-element-diatasNormal" ref={(input) => {this.tidakNormal = input}}>
                                      <source src={suara2} type="audio/mpeg"></source>
                                 </audio>
 
-                                <audio className="audio-thanks">
+                                <audio className="audio-thanks" ref={(input) => {this.selamat = input}}>
                                      <source src={suara3} type="audio/mpeg"></source>
                                 </audio>
                             <div className={styles.scanarea}>

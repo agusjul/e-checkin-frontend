@@ -10,7 +10,7 @@ class ScanQR extends React.Component{
       statistik : {}
     }
     
-    socket = io("https://e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
+    socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/", {transports: ['polling']})
 
     componentDidUpdate(){
       const app = this
@@ -35,7 +35,7 @@ class ScanQR extends React.Component{
   }
 
     async deleteAll(){
-      await axios.delete("https://e-checkin-server-283807.et.r.appspot.com/api/visitors/delete", {
+      await axios.delete("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/delete", {
         headers : {
           Authorization : `bearer ${JSON.parse(localStorage.getItem("token")).token}`
         }
@@ -44,7 +44,7 @@ class ScanQR extends React.Component{
     }
 
     async delete(id){
-      await axios.delete(`https://e-checkin-server-283807.et.r.appspot.com/api/visitors/${id}/delete`, {
+      await axios.delete(`https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/${id}/delete`, {
         headers : {
           Authorization : `bearer ${JSON.parse(localStorage.getItem("token")).token}`
         }
@@ -64,7 +64,7 @@ class ScanQR extends React.Component{
       
       const respon = await axios({
         method : "get",
-        url : "https://e-checkin-server-283807.et.r.appspot.com/api/visitors",
+        url : "https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors",
         headers : {
           Authorization : `Bearer ${JSON.parse(localStorage.getItem("token")).token}`
         }
@@ -72,7 +72,7 @@ class ScanQR extends React.Component{
 
       const stat = await axios({
         method : "get",
-        url : "https://e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
+        url : "https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
         headers : {
           Authorization : `Bearer ${JSON.parse(localStorage.getItem("token")).token}`
         }

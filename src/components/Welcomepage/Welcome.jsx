@@ -19,7 +19,7 @@ class Welcomepage extends React.Component{
                             <Card.Body>
                                 <div>
                                     <div>
-                                        <h4>Silahkan masuk ke <br/> LLDIKTI VIII (Lembaga Layanan Pendidikan Tinggi VIII)</h4>
+                                        <h4>Silahkan masuk ke <br/> STMIK Primakara</h4>
                                         <p style={{fontSize : "18px", marginTop : "20px"}}>Data berhasil dikirim, sekarang anda dapat memasuki area</p>
                                     </div>
                                 </div>

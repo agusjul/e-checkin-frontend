@@ -12,10 +12,11 @@
     position: absolute;
     height: 80vh;
     width: 100%;
+    padding-top: 50px;
 }
 
 .qr {
-    width: 75%;
+    width: 80%;
 }
 
 .scanarea {
