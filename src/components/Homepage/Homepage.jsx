@@ -8,15 +8,16 @@ import { withRouter } from 'react-router-dom';
 import lagu from "../../lagu/new/submitSuccess.mp3";
 import img1 from '../../image/logo-01.png';
 import { BsExclamationTriangle } from "react-icons/bs";
+import ReactAudioPlayer from 'react-audio-player';
 
-const suarasd = require('../../lagu/new/selamatdatangpudak.mp3');
+//const suarasd = require(process.env.PUBLIC_URL + '/sound/selamatdatangpudak.mp3');
 
 
 class Homepage extends React.Component{
 
     constructor(props) {
     super(props)
-    this.myRef = React.createRef();
+    this.rap = React.createRef();
   }  
 
     state ={
@@ -25,7 +26,7 @@ class Homepage extends React.Component{
         newCheckin : false
     }
 
-    socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
+    socket = io("https://badung-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']})
 
     componentDidUpdate(){
         const app = this
@@ -56,7 +57,7 @@ class Homepage extends React.Component{
         // audioEl.play()  
         const stat = await axios({
             method : "get",
-            url : "https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
+            url : "https://badung-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors/stats",
             // headers : {
             //   Authorization : `Bearer ${JSON.parse(localStorage.getItem("token")).token}`
             // }
@@ -79,12 +80,19 @@ class Homepage extends React.Component{
             }
         })
 
-        db.ref('pengunjung/newCheckin').on('value', snapshot =>{
+        db.ref('pengunjung/newCheckin').on('value', async snapshot =>{
 
             
             const data = snapshot.val()
             if(data){
-                this.myRef.play(); 
+            //    window.suaraselamatdatang(); 
+                try {
+                    this.rap.audioEl.current.muted = false;
+                    await this.rap.audioEl.current.play();
+                } catch (error) {
+                    await this.rap.audioEl.current.play();
+                }
+
             }
             this.setState({
                 newCheckin : data
@@ -117,7 +125,7 @@ class Homepage extends React.Component{
                         <Card.Body>
                             <div className={styles.scanarea}>
                                 <div className={styles.information}>
-                                    <h2>Selamat Datang di Denpasar Festival <br/>Tahun 2020</h2>
+                                    <h2>Selamat datang di <br/> STMIK Primakara</h2>
                                         <p style={{fontSize : "18px", marginTop : "20px"}}>
                                             Automatic Inspection Gate Merupakan alat pendeteksi Suhu dan Masker Otomatis 
                                             yang mampu mencatat jumlah pengujung yang telah masuk, sedang didalam, 
@@ -214,9 +222,14 @@ class Homepage extends React.Component{
 
 
             <div className={styles.container}>
-                    <audio className="audio-element-selamatDatang" ref={(input) => {this.myRef = input}}>
-                        <source src={suarasd} type="audio/mpeg"></source>
-                    </audio>
+                    {/* <audio className="audio-element-selamatDatang" ref={(input) => {this.myRef = input}}>
+                        <source src={process.env.PUBLIC_URL + '/sound/selamatdatangpudak.mp3'} type="audio/mpeg"></source>
+                    </audio> */}
+                    <ReactAudioPlayer
+                        muted={true}
+                        ref={(element) => { this.rap = element; }}
+                        src={process.env.PUBLIC_URL + '/sound/selamatdatangpudak.mp3'}
+                        />
                     <div className={styles.bodyy}>
                     {
                         !this.state.newCheckin ? tidakpengunjung : pengunjungbaru

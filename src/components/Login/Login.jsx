@@ -36,7 +36,7 @@ class Logincomponent extends React.Component{
 
     handleSubmit = async e => {
         try {
-            const token = await axios.post("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/users/login", 
+            const token = await axios.post("https://badung-dot-e-checkin-server-283807.et.r.appspot.com/api/users/login", 
             {username : this.state.username, password : this.state.password});
             localStorage.setItem("token", JSON.stringify(token.data))
             this.toAdmin();

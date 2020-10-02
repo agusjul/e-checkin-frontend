@@ -39,9 +39,9 @@ class Formcomponent extends React.Component {
         e.preventDefault();
         console.log(this.state)
         // if(this.state.no.length === 8){
-            const socket = io("https://dps-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
+            const socket = io("https://badung-dot-e-checkin-server-283807.et.r.appspot.com", {transports: ['polling']});
             console.log(socket);
-            const visitor = await axios.post("https://dps-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors",
+            const visitor = await axios.post("https://badung-dot-e-checkin-server-283807.et.r.appspot.com/api/visitors",
                 {
                     name : this.state.nama,
                     telp : this.state.no, 
@@ -155,7 +155,7 @@ class Formcomponent extends React.Component {
                             <Form.Control type="date" value={this.state.tgllahir} onChange={this.handleTanggalLahirChange} />
                         </Form.Group> */}
                         <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label>Email (optional)</Form.Label>
                             <Form.Control type="email" value={this.state.email} onChange={this.handleEmailChange} />
                         </Form.Group>
                         {/* <Form.Group controlId="formGroupPassword">

@@ -33,6 +33,11 @@
           warningContainer = document.getElementById('warning');
           warningContainer.appendChild(document.createElement("div"));
       }
+
+      async function suaraselamatdatang(){
+        var suarasd = document.getElementById("selamatdatang");
+        await suarasd.play();
+      }
   
       async function loop() {
           webcam.update(); // update the webcam frame
@@ -115,6 +120,9 @@
     <title>Check In App</title>
   </head>
   <body>
+    <!-- <audio id="selamatdatang" >
+      <source src="sound/new/selamatdatangpudak.mp3" type="audio/mpeg">
+    </audio> -->
     <audio id="scanqr" >
       <source src="sound/scanQRCode.mp3" type="audio/mpeg">
     </audio>

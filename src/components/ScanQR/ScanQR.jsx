@@ -97,7 +97,7 @@ class ScanQR extends React.Component{
                         this.suhuNormal.play();
                         setTimeout(
                             function(){
-                                window.init();; 
+                                window.init();
                                 }, 
                             1500
                         );
@@ -151,15 +151,15 @@ class ScanQR extends React.Component{
                     <Card className={styles.qr}>
                         <Card.Body>
                                 <audio className="audio-element-normal" ref={(input) => {this.suhuNormal = input}}>
-                                     <source src={suara} type="audio/mpeg"></source>
+                                     <source src={process.env.PUBLIC_URL + '/sound/new/selamatDatang.mp3'} type="audio/mpeg"></source>
                                 </audio>
 
                                 <audio className="audio-element-diatasNormal" ref={(input) => {this.tidakNormal = input}}>
-                                     <source src={suara2} type="audio/mpeg"></source>
+                                     <source src={process.env.PUBLIC_URL + '/sound/new/suhuTuhuhDiatasNormal.mp3'} type="audio/mpeg"></source>
                                 </audio>
 
                                 <audio className="audio-thanks" ref={(input) => {this.selamat = input}}>
-                                     <source src={suara3} type="audio/mpeg"></source>
+                                     <source src={process.env.PUBLIC_URL + '/sound/new/submitSuccess.mp3'} type="audio/mpeg"></source>
                                 </audio>
                             <div className={styles.scanarea}>
                                 <div className={styles.information}>
